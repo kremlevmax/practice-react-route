@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import QuoteList from "./components/quotes/QuoteList";
 import QuoteForm from "./components/quotes/QuoteForm";
 import QuoteItem from "./components/quotes/QuoteItem";
@@ -6,7 +6,10 @@ import QuoteItem from "./components/quotes/QuoteItem";
 function App() {
   return (
     <div>
-      <Route path='/quotelist'>
+      <Route path='/' exact>
+        <Redirect to='/quotelist' />
+      </Route>
+      <Route path='/quotelist' exact>
         <QuoteList />
       </Route>
       <Route path='/new'>
