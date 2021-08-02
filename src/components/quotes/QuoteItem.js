@@ -1,17 +1,11 @@
 import classes from "./QuoteItem.module.css";
-import { useParams, Route } from "react-router-dom";
-import Comments from "../comments/Comments";
+import { Link } from "react-router-dom";
 import { Fragment } from "react";
 
 const QuoteItem = (props) => {
-  const params = useParams();
-  console.log(params.quoteId);
+  const id = props.id;
   return (
     <Fragment>
-      <Route path='/quotelist/:quoteId/comments'>
-        <Comments />
-      </Route>
-
       <li className={classes.item}>
         <figure>
           <blockquote>
@@ -19,7 +13,9 @@ const QuoteItem = (props) => {
           </blockquote>
           <figcaption>{props.author}</figcaption>
         </figure>
-        <a className='btn'>View Fullscreen</a>
+        <Link to={`/quotelist/${id}`} className='btn'>
+          View Fullscreen
+        </Link>
       </li>
     </Fragment>
   );
