@@ -7,7 +7,6 @@ const QuoteList = (props) => {
   return (
     <Fragment>
       <ul className={classes.list}>
-        {/*
         {props.quotes.map((quote) => (
           <QuoteItem
             key={quote.id}
@@ -16,7 +15,6 @@ const QuoteList = (props) => {
             text={quote.text}
           />
         ))}
-        */}
       </ul>
     </Fragment>
   );

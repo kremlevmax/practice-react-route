@@ -8,7 +8,7 @@ const QuoteItem = (props) => {
   console.log(params.quoteId);
   return (
     <Fragment>
-      <Route path='/quotelist/quoteId/comments'>
+      <Route path='/quotelist/:quoteId/comments'>
         <Comments />
       </Route>
 
