@@ -11,8 +11,6 @@ const Comments = () => {
     setIsAddingComment(true);
   };
 
-  const params = useParams();
-  console.log(params.quoteId);
   return (
     <section className={classes.comments}>
       <h2>User Comments</h2>

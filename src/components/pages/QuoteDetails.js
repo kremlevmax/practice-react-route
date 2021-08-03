@@ -1,6 +1,6 @@
 import HighlightedQuote from "../quotes/HighlightedQuote";
 import Comments from "../comments/Comments";
-import { Route, useParams } from "react-router-dom";
+import { Route, useParams, Link } from "react-router-dom";
 
 const DUMMY_DATA = [
   { id: "1a", author: "Walt Disney", text: "Whatever you do, do it well" },
@@ -24,8 +24,16 @@ const QuoteDetails = () => {
   return (
     <>
       <HighlightedQuote text={quote.text} author={quote.author} />
+
       <Route path='/quotelist/:quoteId/comments'>
         <Comments />
+      </Route>
+      <Route path={`/quotelist/${params.quoteId}`} exact>
+        <div className='centered'>
+          <Link to={`${params.quoteId}/comments`} className='btn--flat'>
+            Show Comments
+          </Link>
+        </div>
       </Route>
     </>
   );
