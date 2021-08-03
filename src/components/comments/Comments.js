@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import classes from "./Comments.module.css";
 import NewCommentForm from "./NewCommentForm";
-import { useParams } from "react-router-dom";
 
 const Comments = () => {
   const [isAddingComment, setIsAddingComment] = useState(false);
