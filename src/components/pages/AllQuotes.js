@@ -1,19 +1,43 @@
 import QuoteList from "../quotes/QuoteList";
-
-const DUMMY_DATA = [
-  { id: "1a", author: "Walt Disney", text: "Whatever you do, do it well" },
-  { id: "2a", author: "Buddha", text: "What we think, we become" },
-  {
-    id: "3a",
-    author: "Robert H. Schiuller",
-    text: "Problems are not stop signs, they are guidelines",
-  },
-];
+import LoadingSpinner from "../UI/LoadingSpinner";
+import useHttp from "../../hooks/use-http";
+import { getAllQuotes } from "../../lib/api";
+import { useEffect } from "react";
+import NoQuotesFound from "../quotes/NoQuotesFound";
 
 const AllQuotes = () => {
+  const { sendRequest, data: loadedQuotes, status, error } = useHttp(
+    getAllQuotes,
+    true
+  );
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  if (status === "pending") {
+    return (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className='centered focused'>{error}</p>;
+  }
+
+  if (status === "completed" && (!loadedQuotes || loadedQuotes.length === 0)) {
+    return (
+      <div className='centered focused'>
+        <NoQuotesFound />
+      </div>
+    );
+  }
+
   return (
     <>
-      <QuoteList quotes={DUMMY_DATA} />
+      <QuoteList quotes={loadedQuotes} />
     </>
   );
 };

@@ -8,18 +8,19 @@ const AddNewQuote = () => {
   const { sendRequest, status } = useHttp(addQuote);
   const history = useHistory();
 
-  const onAddQuote = (quote) => {
-    sendRequest(quote);
-  };
-
   useEffect(() => {
     if (status === "completed") {
       history.push("/quotelist");
     }
+    return () => {};
   }, [status, history]);
+
+  const onAddQuote = (quote) => {
+    sendRequest(quote);
+  };
   return (
     <>
-      <QuoteForm onAddQuote={onAddQuote} />
+      <QuoteForm isLoading={status === "pending"} onAddQuote={onAddQuote} />
     </>
   );
 };

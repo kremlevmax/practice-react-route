@@ -1,5 +1,5 @@
 import { useRef, useState, Fragment } from "react";
-import { useHistory, Prompt } from "react-router-dom";
+import { Prompt } from "react-router-dom";
 
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -9,12 +9,11 @@ const QuoteForm = (props) => {
   const [isEnteringNewQuote, setIsEnteringANewQuote] = useState(false);
   const authorInputRef = useRef();
   const textInputRef = useRef();
-  const history = useHistory();
 
   const onFocusHandler = () => {
     setIsEnteringANewQuote(true);
   };
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = () => {
     setIsEnteringANewQuote(false);
   };
 
@@ -27,7 +26,6 @@ const QuoteForm = (props) => {
     // optional: Could validate here
 
     props.onAddQuote({ author: enteredAuthor, text: enteredText });
-    history.push("/quotelist");
   }
 
   return (
