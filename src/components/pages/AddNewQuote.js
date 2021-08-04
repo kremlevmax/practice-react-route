@@ -1,8 +1,13 @@
 import QuoteForm from "../quotes/QuoteForm";
+import useHttp from "../../hooks/use-http";
+import { addQuote } from "../../lib/api";
+import { useHistory } from "react-router-dom";
 
 const AddNewQuote = () => {
+  const { sendRequest, status } = useHttp(addQuote);
+
   const onAddQuote = (quote) => {
-    console.log(quote);
+    sendRequest(quote);
   };
 
   return (
