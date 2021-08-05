@@ -20,7 +20,11 @@ const QuoteDetails = () => {
   }, [sendRequest, quoteId]);
 
   if (status === "pending") {
-    return <LoadingSpinner />;
+    return (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (!loadedQuote) {
